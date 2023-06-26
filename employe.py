@@ -135,20 +135,23 @@ class Employe:
         Entry(self.root, textvariable=self.var_salaire, font=("times new roman", 12, "bold"), bd=2).place(x=460, y=290,
                                                                                                           width=140)
 
-        self.btnAjouter=Button(self.root, text="Ajouter", command=self.ajouter,state="normal" ,font=("Helvetica", 9, "bold"), bg="green",
-               cursor="hand2")
+        self.btnAjouter = Button(self.root, text="Ajouter", command=self.ajouter, state="normal",
+                                 font=("Helvetica", 9, "bold"), bg="green",
+                                 cursor="hand2")
         self.btnAjouter.place(x=400, y=330, width=70)
-                                    
 
-        self.btnModifier = Button(self.root, text="Modifier",state="disabled", font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2")
-                                 
+        self.btnModifier = Button(self.root, text="Modifier", state="disabled", command=self.modifier,
+                                  font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2")
+
         self.btnModifier.place(x=500, y=330, width=70)
 
-        self.btnReinstaller = Button(self.root, text="Réinstaller", font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
+        self.btnReinstaller = Button(self.root, text="Réinstaller", font=("Helvetica", 9, "bold"), fg="black",
+                                     bg="yellow", cursor="hand2")
 
         self.btnReinstaller.place(x=600, y=330, width=70)
 
-        self.btnSupprimer = Button(self.root, text="Supprimer",state="disabled", font=("Helvetica", 9, "bold"), fg="black", bg="red", cursor="hand2")
+        self.btnSupprimer = Button(self.root, text="Supprimer", state="disabled", font=("Helvetica", 9, "bold"),
+                                   fg="black", bg="red", cursor="hand2")
 
         self.btnSupprimer.place(x=700, y=330, width=70)
 
@@ -163,9 +166,10 @@ class Employe:
         scrollx.pack(side=BOTTOM, fill=X)
 
         self.Listemploye = ttk.Treeview(ListeFrame,
-                                        columns=("id", "nom", "prenom", "sexe", "naissance", "mail", "password", "contact",
-                    
-                                                 "adhesion", "type", "adresse", "salaire"
+                                        columns=(
+                                            "id", "nom", "prenom", "sexe", "naissance", "mail", "password", "contact",
+
+                                            "adhesion", "type", "adresse", "salaire"
                                         ), yscrollcommand=scrolly.set, xscrollcommand=scrollx)
 
         scrollx.config(command=self.Listemploye.xview)
@@ -204,11 +208,11 @@ class Employe:
                 else:
                     # si l'id n'existe pas
                     cur.execute(
-                        "insert into employe(id , nom , prenom , sexe , naissance , mail,password, contact, adhesion, type,adresse, salaire) values(?,?,?,?,?,?,?,?,?,?,?,?)",
+                        "insert into employe(id , nom , prenom , sexe , naissance , mail, password, contact, adhesion, type,adresse, salaire) values(?,?,?,?,?,?,?,?,?,?,?,?)",
                         (
                             self.id_employe.get(),
-                            self.var_prenom.get(),
                             self.var_nom.get(),
+                            self.var_prenom.get(),
                             self.var_sexe.get(),
                             self.var_dateNaissance.get(),
                             self.var_mail.get(),
@@ -242,7 +246,7 @@ class Employe:
 
     def getEmploye(self, ex):
 
-        self.btnAjouter.config(state="disabled") # lorsqu'on sur le button ajout les autres boutton se deactive
+        self.btnAjouter.config(state="disabled")  # lorsqu'on sur le button ajout les autres boutton se deactive
         self.btnModifier.config(state="normal")
         self.btnSupprimer.config(state="normal")
 
@@ -252,8 +256,8 @@ class Employe:
         contenu = self.Listemploye.item(r)
         row = contenu["values"]
         self.id_employe.set(row[0]),
-        self.var_prenom.set(row[1]),
-        self.var_nom.set(row[2]),
+        self.var_nom.set(row[1]),
+        self.var_prenom.set(row[2]),
         self.var_sexe.set(row[3]),
         self.var_dateNaissance.set(row[4]),
         self.var_mail.set(row[5]),
@@ -265,18 +269,32 @@ class Employe:
         self.txt_adresse.insert(END, row[10]),
         self.var_salaire.set(row[11])
 
-
     def modifier(self):
         con = sqlite3.connect(database=r"C:\Users\besse\PycharmProjects\app_gestionCommerce\services\data.db")
         cur = con.cursor()
         try:
-           if self.id_employe.get() ==  "":
-                messagebox.showerror("Erreur", "L identifant n'existe pas")
+            cur.execute(
+                """ update employe set nom=? , prenom=? , sexe=? , naissance=? , mail=?, password=?, contact=?, adhesion=?, type=?,adresse=?, salaire=? where id=?""",
+                (
+                    self.var_nom.get(),
+                    self.var_prenom.get(),
+                    self.var_sexe.get(),
+                    self.var_dateNaissance.get(),
+                    self.var_mail.get(),
+                    self.var_password.get(),
+                    self.var_contact.get(),
+                    self.var_dateAdhesion.get(),
+                    self.var_type.get(),
+                    self.txt_adresse.get("1.0", END),
+                    self.var_salaire.get(),
+                    self.id_employe.get()
+                ))
+            con.commit()
+            self.afficher()
+            messagebox.showinfo("Succès", "La modification a été effectué avec succcess")
+
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
-
-
- 
 
 
 # ss the green button in the gutter to run the script.
