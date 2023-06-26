@@ -27,8 +27,7 @@ class accueil:
         menu_frame = Frame(self.root, bd=1, relief=RIDGE, bg="white")
         menu_frame.place(x=0, y=149.9, width=200, height=450)
 
-        self.image_menu = Image.open(
-            r"C:\Users\besse\PycharmProjects\app_gestionCommerce\dossier_images\menu.jpg")
+        self.image_menu = Image.open(r"C:\Users\besse\PycharmProjects\app_gestionCommerce\dossier_images\menu.jpg")
         self.image_menu = self.image_menu.resize((200, 82), Image.LANCZOS)
         self.image_menu = ImageTk.PhotoImage(self.image_menu)
         self.Label_image_menu = Label(menu_frame, image=self.image_menu)
@@ -64,14 +63,13 @@ class accueil:
         btn_produit.pack(side=TOP, fill=X)
 
         btn_Ventes = Button(menu_frame, command=self.vente, text="Ventes", image=self.iconeBarre, padx=10, anchor="w",
-                            compound=LEFT,
-                            font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
+                            compound=LEFT, font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")       
         # anchor st utilisé pour definir ou le texte est postionné par rapport à un point de réference
         btn_Ventes.pack(side=TOP, fill=X)
 
         btn_Quitter = Button(menu_frame, text="Quitter", command=self.quitter, image=self.iconeBarre, padx=10,
-                             anchor="w", compound=LEFT,
-                             font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
+                             anchor="w", compound=LEFT,font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
+                             
         # anchor st utilisé pour definir ou le texte est postionné par rapport à un point de réference
         btn_Quitter.pack(side=TOP, fill=X)
 

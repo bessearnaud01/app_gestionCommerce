@@ -135,19 +135,19 @@ class Employe:
         Entry(self.root, textvariable=self.var_salaire, font=("times new roman", 12, "bold"), bd=2).place(x=460, y=290,
                                                                                                           width=140)
 
-        Button(self.root, text="Ajouter", command=self.ajouter, font=("Helvetica", 9, "bold"), bg="green",
-               cursor="hand2").place(x=400, y=330,
-                                     width=70)
+        Button(self.root, text="Ajouter", command=self.ajouter,state="normal" ,font=("Helvetica", 9, "bold"), bg="green",
+               cursor="hand2").place(x=400, y=330, width=70)
+                                    
 
-        self.btnModifier = Button(self.root, text="Modifier",state="normal", font=("Helvetica", 9, "bold"), fg="white", bg="blue",
-                                  cursor="hand2")
+        self.btnModifier = Button(self.root, text="Modifier",state="disabled", font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2")
+                                 
         self.btnModifier.place(x=500, y=330, width=70)
 
-        self.btnReinstaller = Button(self.root, text="Réinstaller", font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
+        self.btnReinstaller = Button(self.root, text="Réinstaller",state="normal", font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
 
         self.btnReinstaller.place(x=600, y=330, width=70)
 
-        self.btnSupprimer = Button(self.root, text="Supprimer", font=("Helvetica", 9, "bold"), fg="black", bg="red", cursor="hand2")
+        self.btnSupprimer = Button(self.root, text="Supprimer",state="disabled", font=("Helvetica", 9, "bold"), fg="black", bg="red", cursor="hand2")
 
         self.btnSupprimer.place(x=700, y=330, width=70)
 

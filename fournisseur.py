@@ -16,6 +16,8 @@ class Fournisseur:
         self.root.focus_force()# elle permet de ne pas travailler sur autre fénêtre que elle
         self.root.title("Fournisseur")
 
+        print("Hello")
+
 
 # ss the green button in the gutter to run the script.
 if __name__ == '__main__':
