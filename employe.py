@@ -135,15 +135,16 @@ class Employe:
         Entry(self.root, textvariable=self.var_salaire, font=("times new roman", 12, "bold"), bd=2).place(x=460, y=290,
                                                                                                           width=140)
 
-        Button(self.root, text="Ajouter", command=self.ajouter,state="normal" ,font=("Helvetica", 9, "bold"), bg="green",
-               cursor="hand2").place(x=400, y=330, width=70)
+        self.btnAjouter=Button(self.root, text="Ajouter", command=self.ajouter,state="normal" ,font=("Helvetica", 9, "bold"), bg="green",
+               cursor="hand2")
+        self.btnAjouter.place(x=400, y=330, width=70)
                                     
 
         self.btnModifier = Button(self.root, text="Modifier",state="disabled", font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2")
                                  
         self.btnModifier.place(x=500, y=330, width=70)
 
-        self.btnReinstaller = Button(self.root, text="Réinstaller",state="normal", font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
+        self.btnReinstaller = Button(self.root, text="Réinstaller", font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
 
         self.btnReinstaller.place(x=600, y=330, width=70)
 
@@ -162,9 +163,9 @@ class Employe:
         scrollx.pack(side=BOTTOM, fill=X)
 
         self.Listemploye = ttk.Treeview(ListeFrame,
-                                        columns=(
-                                            "id", "nom", "prenom", "sexe", "naissance", "mail", "password", "contact",
-                                            "adhesion", "type", "adresse", "salaire"
+                                        columns=("id", "nom", "prenom", "sexe", "naissance", "mail", "password", "contact",
+                    
+                                                 "adhesion", "type", "adresse", "salaire"
                                         ), yscrollcommand=scrolly.set, xscrollcommand=scrollx)
 
         scrollx.config(command=self.Listemploye.xview)
@@ -240,6 +241,11 @@ class Employe:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
 
     def getEmploye(self, ex):
+
+        self.btnAjouter.config(state="disabled") # lorsqu'on sur le button ajout les autres boutton se deactive
+        self.btnModifier.config(state="normal")
+        self.btnSupprimer.config(state="normal")
+
         self.txtId.config(state="readonly")
         # on va se concentré sur la listemploye
         r = self.Listemploye.focus()
@@ -256,8 +262,21 @@ class Employe:
         self.var_dateAdhesion.set(row[8]),
         self.var_type.set(row[9]),
         self.txt_adresse.delete("1.0", END),
-        self.txt_adresse.insert(END, row[10])
-        self.var_salaire.set(row[11]),
+        self.txt_adresse.insert(END, row[10]),
+        self.var_salaire.set(row[11])
+
+
+    def modifier(self):
+        con = sqlite3.connect(database=r"C:\Users\besse\PycharmProjects\app_gestionCommerce\services\data.db")
+        cur = con.cursor()
+        try:
+           if self.id_employe.get() ==  "":
+                messagebox.showerror("Erreur", "L identifant n'existe pas")
+        except EXCEPTION as ex:
+            messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
+
+
+ 
 
 
 # ss the green button in the gutter to run the script.
