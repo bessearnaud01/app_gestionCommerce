@@ -17,7 +17,7 @@ class Employe:
         self.root.focus_force()  # elle permet de ne pas travailler sur autre fénêtre que elle
         self.root.title("Employé")
 
-        con = sqlite3.connect(database=r"C:\Users\besse\PycharmProjects\app_gestionCommerce\services\data.db")
+        con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
         cur.execute(
             "CREATE TABLE IF NOT EXISTS employe(id text PRIMARY KEY, nom text, prenom text, sexe text, naissance text, mail text,password text, contact text, adhesion text, type text,adresse text, salaire text) ")
@@ -255,9 +255,10 @@ class Employe:
         r = self.Listemploye.focus()
         contenu = self.Listemploye.item(r)
         row = contenu["values"]
+        print(row)
         self.id_employe.set(row[0]),
-        self.var_nom.set(row[1]),
-        self.var_prenom.set(row[2]),
+        self.var_prenom.set(row[1]),
+        self.var_nom.set(row[2]),
         self.var_sexe.set(row[3]),
         self.var_dateNaissance.set(row[4]),
         self.var_mail.set(row[5]),
@@ -273,22 +274,26 @@ class Employe:
         con = sqlite3.connect(database=r"C:\Users\besse\PycharmProjects\app_gestionCommerce\services\data.db")
         cur = con.cursor()
         try:
+            data = (
+
+                self.var_nom.get(),
+                self.var_prenom.get(),
+                self.var_sexe.get(),
+                self.var_dateNaissance.get(),
+                self.var_mail.get(),
+                self.var_password.get(),
+                self.var_contact.get(),
+                self.var_dateAdhesion.get(),
+                self.var_type.get(),
+                self.txt_adresse.get("1.0", END),
+                self.var_salaire.get(),
+                self.id_employe.get()
+            )
             cur.execute(
-                """ update employe set nom=? , prenom=? , sexe=? , naissance=? , mail=?, password=?, contact=?, adhesion=?, type=?,adresse=?, salaire=? where id=?""",
-                (
-                    self.var_nom.get(),
-                    self.var_prenom.get(),
-                    self.var_sexe.get(),
-                    self.var_dateNaissance.get(),
-                    self.var_mail.get(),
-                    self.var_password.get(),
-                    self.var_contact.get(),
-                    self.var_dateAdhesion.get(),
-                    self.var_type.get(),
-                    self.txt_adresse.get("1.0", END),
-                    self.var_salaire.get(),
-                    self.id_employe.get()
-                ))
+                "update employe set nom=? , prenom=? , sexe=? , naissance=? , mail=?, password=?, contact=?, adhesion=?, type=?,adresse=?, salaire=? where id=?",
+                data
+            )
+            # print(data) elle permet de printer les produit
             con.commit()
             self.afficher()
             messagebox.showinfo("Succès", "La modification a été effectué avec succcess")
