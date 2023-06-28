@@ -54,8 +54,9 @@ class Employe:
                                                                                                                  y=10,
                                                                                                                  width=180)
 
-        Button(rech_frame, text="Déconnecter", font=("Helvetica", 9, "bold"), fg="white", bg="blue",
-               cursor="hand2").place(x=375, y=6)
+        Button(rech_frame, text="Recherche", command=self.recherche, font=("Helvetica", 9, "bold"), fg="white",
+               bg="blue", cursor="hand2").place(x=375, y=6)
+
         Button(rech_frame, text="tout", command=self.afficher, font=("Helvetica", 9, "bold"), bg="lightgray",
                cursor="hand2").place(x=470, y=6, width=50)
 
@@ -73,6 +74,7 @@ class Employe:
 
         entreSexe = ttk.Combobox(self.root, textvariable=self.var_sexe, values=("Masculin", "Féminin"),
                                  font=("times new roman", 10, "bold"), state="r")
+
         # entreSexe.set("Choix")
         entreSexe.current(0)
         entreSexe.place(x=450, y=200, width=150)
@@ -84,17 +86,20 @@ class Employe:
 
         Label(self.root, text="Contact :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(
             x=600, y=230)
+
         Entry(self.root, textvariable=self.var_contact, font=("times new roman", 12, "bold"), bd=2).place(x=670, y=230,
                                                                                                           width=120)
 
         # 2eme ligne de formulaire
         Label(self.root, text="Nom:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,
                                                                                                               y=230)
+
         Entry(self.root, textvariable=self.var_nom, font=("times new roman", 12, "bold"), bd=2).place(x=190, y=230,
                                                                                                       width=200)
 
         Label(self.root, text="Date de naissance :", bg="white", font=("times new roman", 12, "bold"),
               cursor="hand2").place(x=390, y=230)
+
         Entry(self.root, textvariable=self.var_dateNaissance, font=("times new roman", 12, "bold"), bd=2).place(x=530,
                                                                                                                 y=230,
                                                                                                                 width=70)
@@ -108,8 +113,10 @@ class Employe:
         # line 3
         Label(self.root, text="Mail:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,
                                                                                                                y=260)
+
         Entry(self.root, textvariable=self.var_mail, font=("times new roman", 12, "bold"), bd=2).place(x=190, y=260,
                                                                                                        width=200)
+
         # Line 4
         Label(self.root, text="Password:", bg="white", font=("times new roman", 12, "bold"),
               cursor="hand2").place(x=390, y=260)
@@ -118,14 +125,15 @@ class Employe:
 
         Label(self.root, text="Type :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600,
                                                                                                                 y=290)
-        entreType = ttk.Combobox(self.root, textvariable=self.var_type, values=("Adminstrateur", "Employé"),
-                                 font=("times new roman", 10, "bold"),
-                                 state="r")
+
+        entreType = ttk.Combobox(self.root, textvariable=self.var_type, values=("Administrateur", "Employé"),
+                                 font=("times new roman", 10, "bold"), state="r")
         entreType.current(0)
         entreType.place(x=650, y=290, width=140)
 
         Label(self.root, text="Adresse:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,
                                                                                                                   y=290)
+
         self.txt_adresse = Text(self.root, font=("times new roman", 12, "bold"), bd=2)
         self.txt_adresse.place(x=220, y=290, width=170, height=70)
 
@@ -136,8 +144,7 @@ class Employe:
                                                                                                           width=140)
 
         self.btnAjouter = Button(self.root, text="Ajouter", command=self.ajouter, state="normal",
-                                 font=("Helvetica", 9, "bold"), bg="green",
-                                 cursor="hand2")
+                                 font=("Helvetica", 9, "bold"), bg="green", cursor="hand2")
         self.btnAjouter.place(x=400, y=330, width=70)
 
         self.btnModifier = Button(self.root, text="Modifier", state="disabled", command=self.modifier,
@@ -145,13 +152,13 @@ class Employe:
 
         self.btnModifier.place(x=500, y=330, width=70)
 
-        self.btnReinstaller = Button(self.root, text="Réinstaller", font=("Helvetica", 9, "bold"), fg="black",
-                                     bg="yellow", cursor="hand2")
+        self.btnReinstaller = Button(self.root, text="Réinstaller", command=self.reinstaliser,
+                                     font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
 
         self.btnReinstaller.place(x=600, y=330, width=70)
 
-        self.btnSupprimer = Button(self.root, text="Supprimer", state="disabled", font=("Helvetica", 9, "bold"),
-                                   fg="black", bg="red", cursor="hand2")
+        self.btnSupprimer = Button(self.root, text="Supprimer", command=self.supprimer, state="disabled",
+                                   font=("Helvetica", 9, "bold"), fg="black", bg="red", cursor="hand2")
 
         self.btnSupprimer.place(x=700, y=330, width=70)
 
@@ -194,7 +201,7 @@ class Employe:
         self.afficher()  # fonction afficher tout
 
     def ajouter(self):
-        con = sqlite3.connect(database=r"C:\Users\besse\PycharmProjects\app_gestionCommerce\services\data.db")
+        con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
         try:
             if self.id_employe.get() == "" or self.var_password.get == "":
@@ -226,6 +233,7 @@ class Employe:
                         ))
                     con.commit()
                     self.afficher()
+                    self.reinstaliser()
                     messagebox.showinfo("Succès", "L'ajout a été effectué avec succcess")
 
         except EXCEPTION as ex:
@@ -255,10 +263,10 @@ class Employe:
         r = self.Listemploye.focus()
         contenu = self.Listemploye.item(r)
         row = contenu["values"]
-        print(row)
+        # print(row)
         self.id_employe.set(row[0]),
-        self.var_prenom.set(row[1]),
-        self.var_nom.set(row[2]),
+        self.var_nom.set(row[1]),
+        self.var_prenom.set(row[2]),
         self.var_sexe.set(row[3]),
         self.var_dateNaissance.set(row[4]),
         self.var_mail.set(row[5]),
@@ -301,20 +309,60 @@ class Employe:
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
 
-    
     def supprimer(self):
         con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
         try:
-            op = messagebox.askyesno("Confirmer","Voulez-vous vraiment supprimer ?")
-            cur.execute("delete from employe where id=?",(self.id_employe.get()))
-
+            op = messagebox.askyesno("Confirmer", "Voulez-vous vraiment supprimer ?")
             if op == True:
-        
+                cur.execute("delete from employe where id=?", (self.id_employe.get()))
+                con.commit()
+                self.afficher()
+                messagebox.showinfo("Succès", "Suppression éffectué")
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
-        
-             
+
+    def reinstaliser(self):
+        self.id_employe.set(""),
+        self.var_nom.set(""),
+        self.var_prenom.set(""),
+        self.var_sexe.set(""),
+        self.var_dateNaissance.set(""),
+        self.var_mail.set(""),
+        self.var_password.set(""),
+        self.var_contact.set(""),
+        self.var_type.set("administrateur")
+        self.var_dateAdhesion.set(""),
+        self.txt_adresse.delete("1.0", END),
+        self.var_salaire.set(""),
+        self.var_recherche_type.set("nom")
+
+    def recherche(self):
+        con = sqlite3.connect(database="services/data.db")
+        cur = con.cursor()
+        try:
+            if self.var_recherche_txt.get() == "":
+                messagebox.showerror("Erreur", "Le champs est vide")
+
+            else:
+               
+                cur.execute(
+                    "select *from employe where"+self.var_recherche_type.get() + " LIKE '%" + self.var_recherche_txt.get() + "%'")
+                print(self.var_recherche_type.get())
+                rows = cur.fetchall()
+                if len(rows) != 0:
+                    self.Listemploye.delete(*self.Listemploye.get_children())
+
+                    for row in rows:
+                        self.Listemploye.insert("", END, values=row)
+                else:
+                    messagebox.showerror("Erreur", "Aucun utilisateur a été trouvé ")
+
+
+        except EXCEPTION as ex:
+            messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
+
+
 # ss the green button in the gutter to run the script.
 if __name__ == '__main__':
     root = Tk()
