@@ -271,7 +271,7 @@ class Employe:
         self.var_salaire.set(row[11])
 
     def modifier(self):
-        con = sqlite3.connect(database=r"C:\Users\besse\PycharmProjects\app_gestionCommerce\services\data.db")
+        con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
         try:
             data = (
@@ -301,7 +301,20 @@ class Employe:
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
 
+    
+    def supprimer(self):
+        con = sqlite3.connect(database="services/data.db")
+        cur = con.cursor()
+        try:
+            op = messagebox.askyesno("Confirmer","Voulez-vous vraiment supprimer ?")
+            cur.execute("delete from employe where id=?",(self.id_employe.get()))
 
+            if op == True:
+        
+        except EXCEPTION as ex:
+            messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
+        
+             
 # ss the green button in the gutter to run the script.
 if __name__ == '__main__':
     root = Tk()
