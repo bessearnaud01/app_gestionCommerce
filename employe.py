@@ -322,6 +322,8 @@ class Employe:
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
 
+    
+
     def reinstaliser(self):
         self.id_employe.set(""),
         self.var_nom.set(""),

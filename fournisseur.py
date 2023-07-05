@@ -17,11 +17,10 @@ class Fournisseur:
         self.root.focus_force()  # elle permet de ne pas travailler sur autre fénêtre que elle
         self.root.title("Fournisseur")
 
-        self.var_recherche_type = StringVar()
-        self.id_fourninsseur = StringVar()
+        self.var_recherche_texte = StringVar()
+        self.var_idfournisseur = StringVar()
         self.var_contact = StringVar()
-        self.var_prenom = StringVar()
-        self.var_sexe = StringVar()
+        self.var_nom = StringVar()
         # Creation de la table fournisseurs 
         con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
@@ -34,32 +33,34 @@ class Fournisseur:
 
 
         Label(rech_frame, text="Id fournisseur:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=140, y=10)
-        self.txtId = Entry(rech_frame,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2)
-        self.txtId.place(x=250, y=10, width=150)
+        Entry(rech_frame,bg="lightyellow",textvariable=self.var_recherche_texte, font=("times new roman", 12, "bold"), bd=2).place(x=250, y=10, width=150)
+        
 
-        Button(rech_frame, text="Rechercher:", font=("Helvetica", 9, "bold"),fg="white", bg="blue",cursor="hand2").place(x=410 , y=10, width=100)
+        Button(rech_frame,command=self.recherche, text="Rechercher:", font=("Helvetica", 9, "bold"),fg="white", bg="blue",cursor="hand2").place(x=410 , y=10, width=100)
 
-        Button(rech_frame, text="Tout", font=("Helvetica", 9, "bold"),fg="black", bg="lightgrey",cursor="hand2").place(x= 520, y=10, width=50)
+        Button(rech_frame,command=self.afficher, text="Tout", font=("Helvetica", 9, "bold"),fg="black", bg="lightgrey",cursor="hand2").place(x= 520, y=10, width=50)
             
         Label(self.root, text="Formulaire Fournisseur", bg="cyan", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=100, width=1020)
 
         # Formulaire du fourniseur
 
         Label(self.root, text="Id fournisseur :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=50, y=160)  
-        self.id_fourninsseur=Entry(self.root, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=170, y=160, width=180)
+        self.id_Txtfournisseur=Entry(self.root,textvariable=self.var_idfournisseur, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2)
+        self.id_Txtfournisseur.place(x=170, y=160, width=180)
 
         Label(self.root, text="Nom :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=50, y=200) 
-        textNom=Entry(self.root, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=170, y=200, width=180)
+        Entry(self.root,textvariable=self.var_nom, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=170, y=200, width=180)
 
         
         Label(self.root, text="Contact :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=50, y=230) 
-        Entry(self.root, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=170, y=230, width=180)
+        Entry(self.root,textvariable=self.var_contact, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=170, y=230, width=180)
 
         Label(self.root, text="description :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=50, y=260) 
-        self.txtDesription=Text(self.root, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=170, y=260, width=180,height=70)
+        self.txtDescription =Text(self.root, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2)
+        self.txtDescription.place(x=170, y=260, width=180,height=70)
 
 
-        self.btnAjouter = Button(self.root, text="Ajouter", state="normal",   font=("Helvetica", 9, "bold"), bg="green", cursor="hand2")
+        self.btnAjouter = Button(self.root,command=self.ajouter, text="Ajouter", state="normal",   font=("Helvetica", 9, "bold"), bg="green", cursor="hand2")
                               
         self.btnAjouter.place(x=40, y=350, width=70)
 
@@ -68,11 +69,11 @@ class Fournisseur:
                                 
         self.btnModifier.place(x=120, y=350, width=70)
 
-        self.btnReinstaller = Button(self.root, text="Réinstaller", font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
+        self.btnReinstaller = Button(self.root, command=self.reinstaliser,text="Réinstaller", font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
                                     
         self.btnReinstaller.place(x=200, y=350, width=70)
 
-        self.btnSupprimer = Button(self.root, text="Supprimer", state="disabled",font=("Helvetica", 9, "bold"), fg="black", bg="red", cursor="hand2")
+        self.btnSupprimer = Button(self.root,command=self.supprimer, text="Supprimer", state="disabled",font=("Helvetica", 9, "bold"), fg="black", bg="red", cursor="hand2")
                                    
         self.btnSupprimer.place(x=280, y=350, width=70)
 
@@ -99,8 +100,8 @@ class Fournisseur:
         self.ListeFournisseurs.pack(fill=BOTH, expand=1)
 
         self.ListeFournisseurs["show"] = "headings"
-        self.ListeFournisseurs.bind("<ButtonRelease-1>")
-        #self.afficher()  # fonction afficher tout
+        self.ListeFournisseurs.bind("<ButtonRelease-1>",self.getFournisseur)
+        self.afficher()  # fonction afficher tout
 
 
        
@@ -108,32 +109,24 @@ class Fournisseur:
         con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
         try:
-            if self.id_employe.get() == "" or self.var_password.get == "":
+            if self.var_idfournisseur.get() == "" or self.var_contact.get == "":
                 messagebox.showerror("Erreur", "Veuillez saisir un id et un mot de pass")
             else:
                 # on va tester si l'id existe
-                cur.execute("select *from fournisseur where id=?", (self.id_employe.get(),))
+                cur.execute("select *from fournisseur where id=?", (self.var_idfournisseur.get()))
                 row = cur.fetchone()
                 if row is not None:
-                    messagebox.showerror("Erreur", "L'id de l'employé existe déja")
+                    messagebox.showerror("Erreur", "L'id du fournisseur existe déja")
                 else:
                     # si l'id n'existe pas
                     cur.execute(
                         "insert into fournisseur(id , nom , contact, description) values(?,?,?,?)",
                         (
-                            self.id_employe.get(),
+                            self.var_idfournisseur.get(),
                             self.var_nom.get(),
-                            self.var_prenom.get(),
-                            self.var_sexe.get(),
-                            self.var_dateNaissance.get(),
-                            self.var_mail.get(),
-                            self.var_password.get(),
                             self.var_contact.get(),
-                            self.var_dateAdhesion.get(),
-                            self.var_type.get(),
-                            self.txt_adresse.get("1.0", END),
-                            self.var_salaire.get(),
-
+                            self.txtDescription.get("1.0", END),
+    
                         ))
                     con.commit()
                     self.afficher()
@@ -142,11 +135,83 @@ class Fournisseur:
 
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
+    
 
-        
+    def afficher(self):
+        con = sqlite3.connect(database="services/data.db")
+        cur = con.cursor()
+        try:
+            # on va tester si l'id existe
+            cur.execute("select *from fournisseur")
+            rows = cur.fetchall()
+            self.ListeFournisseurs.delete(*self.ListeFournisseurs.get_children())
+            for row in rows:
+                self.ListeFournisseurs.insert("", END, values=row)
+        except EXCEPTION as ex:
+            messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}") 
      
 
-   
+    def getFournisseur(self, ex):
+
+        self.btnAjouter.config(state="disabled")  # lorsqu'on sur le button ajout les autres boutton se deactive
+        self.btnModifier.config(state="normal")
+        self.btnSupprimer.config(state="normal")
+        self.id_Txtfournisseur.config(state="readonly")
+        # on va se concentré sur la listemploye
+        r = self.ListeFournisseurs.focus()
+        contenu = self.ListeFournisseurs.item(r)
+        row = contenu["values"]
+        # print(row)
+        self.var_idfournisseur.set(row[0]),
+        self.var_nom.set(row[1]),
+        self.var_contact.set(row[2]),
+        self.txtDescription.delete("1.0", END),
+        self.txtDescription.insert(END, row[3]),
+    
+    def recherche(self):
+        con = sqlite3.connect(database="services/data.db")
+        cur = con.cursor()
+        try:
+            if self.var_recherche_texte.get() == "":
+                messagebox.showerror("Erreur", "Le champs est vide")
+
+            else:
+ 
+                cur.execute( "select * from fournisseur where nom "  + " LIKE '%" + self.var_recherche_texte.get() + "%'")
+                #print(self.var_recherche_type.get())
+                rows = cur.fetchall()
+                if len(rows) != 0:
+                    self.ListeFournisseurs.delete(*self.ListeFournisseurs.get_children())
+
+                    for row in rows:
+                        self.ListeFournisseurs.insert("", END, values=row)
+                else:
+                    messagebox.showerror("Erreur", "Aucun utilisateur a été trouvé ")
+
+
+        except EXCEPTION as ex:
+            messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
+    
+    def supprimer(self):
+        con = sqlite3.connect(database="services/data.db")
+        cur = con.cursor()
+        try:
+            op = messagebox.askyesno("Confirmer", "Voulez-vous vraiment supprimer ?")
+            if op == True:
+                cur.execute("delete from fournisseur where id=?", (self.var_idfournisseur.get()))
+                con.commit()
+                self.afficher()
+                messagebox.showinfo("Succès", "Suppression éffectué")
+        except EXCEPTION as ex:
+            messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
+       
+    
+    def reinstaliser(self):
+        self.var_idfournisseur.set(""),
+        self.var_nom.set(""),
+        self.var_contact.set(""),
+        self.txtDescription.delete("1.0", END),
+
 
 
 
