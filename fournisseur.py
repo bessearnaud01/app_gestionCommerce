@@ -32,7 +32,7 @@ class Fournisseur:
         rech_frame.place(x=180, y=10, width=650, height=80)
 
 
-        Label(rech_frame, text="Id fournisseur:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=140, y=10)
+        Label(rech_frame, text="Nom:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=190, y=10)
         Entry(rech_frame,bg="lightyellow",textvariable=self.var_recherche_texte, font=("times new roman", 12, "bold"), bd=2).place(x=250, y=10, width=150)
         
 
@@ -60,11 +60,11 @@ class Fournisseur:
         self.txtDescription.place(x=170, y=260, width=180,height=70)
 
 
-        self.btnAjouter = Button(self.root,command=self.ajouter, text="Ajouter", state="normal",   font=("Helvetica", 9, "bold"), bg="green", cursor="hand2")
+        self.btnAjouter = Button(self.root,command=self.ajouter, text="Ajouter", state="normal",   font=("Helvetica", 9, "bold"),fg="white" ,bg="green", cursor="hand2")
                               
         self.btnAjouter.place(x=40, y=350, width=70)
 
-        self.btnModifier = Button(self.root, text="Modifier", state="disabled", font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2")
+        self.btnModifier = Button(self.root,command=self.modifier, text="Modifier", state="disabled", font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2")
 
                                 
         self.btnModifier.place(x=120, y=350, width=70)
@@ -211,6 +211,31 @@ class Fournisseur:
         self.var_nom.set(""),
         self.var_contact.set(""),
         self.txtDescription.delete("1.0", END),
+
+
+
+    def modifier(self):
+        con = sqlite3.connect(database="services/data.db")
+        cur = con.cursor()
+        try:
+            data = (
+
+                self.var_nom.get(),
+                self.var_contact.get(),
+                self.txtDescription.get("1.0", END),
+                self.var_idfournisseur.get()
+            )
+            cur.execute(
+                "update fournisseur set nom=?, contact=?,description=?  where id=?",
+                data
+            )
+            #print(data) 
+            con.commit()
+            self.afficher()
+            messagebox.showinfo("Succès", "La modification a été effectué avec succcess")
+
+        except EXCEPTION as ex:
+            messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
 
 
 
