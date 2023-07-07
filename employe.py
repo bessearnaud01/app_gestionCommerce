@@ -11,7 +11,7 @@ class Employe:
 
     def __init__(self, root):
         self.root = root
-        self.root.geometry("1020x650+200+1")
+        self.root.geometry("900x580+300+50")
         self.root.minsize(620, 450)
         self.root.config(bg="#FFFFFF")
         self.root.focus_force()  # elle permet de ne pas travailler sur autre fénêtre que elle
@@ -40,8 +40,8 @@ class Employe:
         self.var_salaire = StringVar()
 
         # frame recherche
-        rech_frame = LabelFrame(self.root, text="Recherche employé", bd=2, relief=RIDGE,bg="white",
-                                font=("times new roman", 12, "bold"))
+        rech_frame = LabelFrame(self.root, text="Recherche employé", bd=2, relief=RIDGE,bg="white", font=("times new roman", 12, "bold"))
+                               
         rech_frame.place(x=180, y=10, width=650, height=90)
 
         recherche_option = ttk.Combobox(rech_frame, textvariable=self.var_recherche_type,
@@ -61,7 +61,7 @@ class Employe:
         Button(rech_frame, text="tout", command=self.afficher, font=("Helvetica", 9, "bold"), bg="lightgray",  cursor="hand2").place(x=470, y=6, width=50)
              
 
-        Label(self.root, text="Formulaire Employé", bg="cyan", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=120, width=1020)
+        Label(self.root, text="Formulaire Employé",bg="#e4e8ff", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=120, width=900)
               
 
         Label(self.root, text="Id employé :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(  x=150, y=200)
@@ -103,8 +103,8 @@ class Employe:
         Entry(self.root, textvariable=self.var_dateNaissance,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2).place(x=530, y=230, width=70)
                                                                                                                
                                                                                                                
-        Label(self.root, text="Date d'adhésion :", bg="white", font=("times new roman", 12, "bold"),
-              cursor="hand2").place(x=600, y=260)
+        Label(self.root, text="Date d'adhésion :", bg="white", font=("times new roman", 12, "bold"),cursor="hand2").place(x=600, y=260)
+              
         Entry(self.root, textvariable=self.var_dateAdhesion,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2).place(x=730, width=60,y=260,)
                                                                                                            
                                                                                                               
@@ -143,8 +143,8 @@ class Employe:
         Entry(self.root, textvariable=self.var_salaire,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2).place(x=460, y=290, width=140)
                                                                                                          
 
-        self.btnAjouter = Button(self.root, text="Ajouter", command=self.ajouter, state="normal",
-                                 font=("Helvetica", 9, "bold"), bg="green", cursor="hand2")
+        self.btnAjouter = Button(self.root, text="Ajouter", command=self.ajouter, state="normal",font=("Helvetica", 9, "bold"), bg="green", cursor="hand2")
+                               
         self.btnAjouter.place(x=400, y=330, width=70)
 
         self.btnModifier = Button(self.root, text="Modifier", state="disabled", command=self.modifier, font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2")

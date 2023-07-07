@@ -14,7 +14,7 @@ class accueil:
         self.root.geometry("1020x650+100+1")
         self.root.minsize(920, 650)
         self.icon_title = ImageTk.PhotoImage(
-            file=r"C:\Users\besse\PycharmProjects\app_gestionCommerce\dossier_images\logo.png")
+            file=r"C:dossier_images\logo.png")
         Label(self.root, text="Magasin BNAB", image=self.icon_title, font=("Helvetica", 15, "bold"), bg="#e4e8ff",
               anchor="w", padx=20, compound=LEFT).place(x=0, y=0, relwidth=100, height=100)
 
@@ -27,37 +27,34 @@ class accueil:
         menu_frame = Frame(self.root, bd=1, relief=RIDGE, bg="white")
         menu_frame.place(x=0, y=149.9, width=200, height=450)
 
-        self.image_menu = Image.open(r"C:\Users\besse\PycharmProjects\app_gestionCommerce\dossier_images\menu.jpg")
+        self.image_menu = Image.open(r"dossier_images\menu.jpg")
         self.image_menu = self.image_menu.resize((200, 82), Image.LANCZOS)
         self.image_menu = ImageTk.PhotoImage(self.image_menu)
         self.Label_image_menu = Label(menu_frame, image=self.image_menu)
         self.Label_image_menu.pack(side=TOP, fill=X)
 
         self.iconeBarre = ImageTk.PhotoImage(
-            file=r"C:\Users\besse\PycharmProjects\app_gestionCommerce\dossier_images\side.png")
+            file=r"dossier_images\side.png")
 
-        Label(menu_frame, text="Bienvenu Chez BNAB",
-              font=("Helvetica", 10, "bold"), bg="orange", fg="black").pack(side=TOP, fill=X)
-
-        btn_employe = Button(menu_frame, command=self.employe, text="Employés", image=self.iconeBarre, padx=10,
-                             anchor="w", compound=LEFT,
-                             font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
+        Label(menu_frame, text="Bienvenu Chez BNAB", font=("Helvetica", 10, "bold"), bg="orange", fg="black").pack(side=TOP, fill=X)
+        btn_employe = Button(menu_frame, command=self.employe, text="Employés", image=self.iconeBarre, padx=10, anchor="w", compound=LEFT,   font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
+                            
+                          
         # anchor st utilisé pour definir ou le texte est postionné par rapport à un point de réference
         btn_employe.pack(side=TOP, fill=X)
 
-        btn_fournisseurs = Button(menu_frame, text="Fournisseurs", image=self.iconeBarre, padx=10, anchor="w",
-                                  compound=LEFT, font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
+        btn_fournisseurs = Button(menu_frame, text="Fournisseurs",command=self.fournisseur, image=self.iconeBarre, padx=10, anchor="w",   compound=LEFT, font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
+                               
         # anchor st utilisé pour definir ou le texte est postionné par rapport à un point de réference
         btn_fournisseurs.pack(side=TOP, fill=X)
 
-        btn_categorie = Button(menu_frame, command=self.categorie, text="catégories", image=self.iconeBarre, padx=10,
-                               anchor="w", compound=LEFT,
+        btn_categorie = Button(menu_frame, command=self.categorie, text="catégories", image=self.iconeBarre, padx=10, anchor="w", compound=LEFT,
                                font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2", width=0.5)
         # anchor st utilisé pour definir ou le texte est postionné par rapport à un point de réference
         btn_categorie.pack(side=TOP, fill=X)
 
-        btn_produit = Button(menu_frame, command=self.produit, text="Produits", image=self.iconeBarre, padx=10,
-                             anchor="w", compound=LEFT,
+        btn_produit = Button(menu_frame, command=self.produit, text="Produits", image=self.iconeBarre, padx=10,anchor="w", compound=LEFT,
+                             
                              font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
         # anchor st utilisé pour definir ou le texte est postionné par rapport à un point de réference
         btn_produit.pack(side=TOP, fill=X)
@@ -99,26 +96,36 @@ class accueil:
               font=("Helvetica", 10, "bold"), bg="black", fg="white").pack(side=BOTTOM, fill=X)
 
     def employe(self):
-        self.obj = os.system("python C:/Users/besse/PycharmProjects/app_gestionCommerce/employe.py")
+        self.obj = os.system("python employe.py")
 
     def categorie(self):
-        self.obj = os.system("python C:/Users/besse/PycharmProjects/app_gestionCommerce/categorie.py")
+        self.obj = os.system("python categorie.py")
 
     def fournisseur(self):
-        self.obj = os.system("python C:/Users/besse/PycharmProjects/app_gestionCommerce/fournisseur.py")
+         self.obj = os.system("python fournisseur.py")
+       
 
     def vente(self):
-        self.obj = os.system("python C:/Users/besse/PycharmProjects/app_gestionCommerce/vente.py")
+        self.obj = os.system("python vente.py")
 
     def produit(self):
-        self.obj = os.system("python C:/Users/besse/PycharmProjects/app_gestionCommerce/produit.py")
+        self.obj = os.system("python produit.py")
 
     def quitter(self):
         self.root.destroy()
 
     def login(self):
         self.root.destroy()
-        self.obj = os.system("python C:/Users/besse/PycharmProjects/app_gestionCommerce/login.py")
+        self.obj = os.system("python produit.py")
+       
+
+    
+    # Cette fonction permet d'aller sur la page register
+    def window_register(self):
+        self.window.destroy()
+        self.obj = os.system("python login.py")
+       
+        
 
 
 # ss the green button in the gutter to run the script.

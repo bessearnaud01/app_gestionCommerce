@@ -11,7 +11,7 @@ class Fournisseur:
 
     def __init__(self, root):
         self.root = root
-        self.root.geometry("1020x550+150+1")
+        self.root.geometry("900x580+300+50")
         self.root.minsize(620, 450)
         self.root.config(bg="#FFFFFF")
         self.root.focus_force()  # elle permet de ne pas travailler sur autre fénêtre que elle
@@ -44,44 +44,44 @@ class Fournisseur:
 
         # Formulaire du fourniseur
 
-        Label(self.root, text="Id fournisseur :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=50, y=160)  
+        Label(self.root, text="Id fournisseur :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=160)  
         self.id_Txtfournisseur=Entry(self.root,textvariable=self.var_idfournisseur, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2)
-        self.id_Txtfournisseur.place(x=170, y=160, width=180)
+        self.id_Txtfournisseur.place(x=130, y=160, width=150)
 
-        Label(self.root, text="Nom :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=50, y=200) 
-        Entry(self.root,textvariable=self.var_nom, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=170, y=200, width=180)
+        Label(self.root, text="Nom :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=200) 
+        Entry(self.root,textvariable=self.var_nom, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=130, y=200, width=150)
 
         
-        Label(self.root, text="Contact :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=50, y=230) 
-        Entry(self.root,textvariable=self.var_contact, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=170, y=230, width=180)
+        Label(self.root, text="Contact :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=230) 
+        Entry(self.root,textvariable=self.var_contact, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=130, y=230, width=150)
 
-        Label(self.root, text="description :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=50, y=260) 
+        Label(self.root, text="description :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=260) 
         self.txtDescription =Text(self.root, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2)
-        self.txtDescription.place(x=170, y=260, width=180,height=70)
+        self.txtDescription.place(x=130, y=260, width=150,height=70)
 
 
         self.btnAjouter = Button(self.root,command=self.ajouter, text="Ajouter", state="normal",   font=("Helvetica", 9, "bold"),fg="white" ,bg="green", cursor="hand2")
                               
-        self.btnAjouter.place(x=40, y=350, width=70)
+        self.btnAjouter.place(x=10, y=350, width=70)
 
         self.btnModifier = Button(self.root,command=self.modifier, text="Modifier", state="disabled", font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2")
 
                                 
-        self.btnModifier.place(x=120, y=350, width=70)
+        self.btnModifier.place(x=85, y=350, width=70)
 
         self.btnReinstaller = Button(self.root, command=self.reinstaliser,text="Réinstaller", font=("Helvetica", 9, "bold"), fg="black", bg="yellow", cursor="hand2")
                                     
-        self.btnReinstaller.place(x=200, y=350, width=70)
+        self.btnReinstaller.place(x=160.5, y=350, width=70)
 
         self.btnSupprimer = Button(self.root,command=self.supprimer, text="Supprimer", state="disabled",font=("Helvetica", 9, "bold"), fg="black", bg="red", cursor="hand2")
                                    
-        self.btnSupprimer.place(x=280, y=350, width=70)
+        self.btnSupprimer.place(x=239, y=350, width=70)
 
 
         # liste fourniseurs
         # ListeFrame = tableau
         ListeFrame = Frame(self.root, bd=3, relief=RIDGE)
-        ListeFrame.place(x=360, y=150, height=200,width=650)
+        ListeFrame.place(x=300, y=150, height=180,width=600)
 
         scrolly = Scrollbar(ListeFrame, orient=VERTICAL)
         scrolly.pack(side=RIGHT, fill=Y)
