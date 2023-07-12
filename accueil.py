@@ -26,7 +26,6 @@ class accueil:
 
         menu_frame = Frame(self.root, bd=1, relief=RIDGE, bg="white")
         menu_frame.place(x=0, y=149.9, width=200, height=450)
-
         self.image_menu = Image.open(r"dossier_images\menu.jpg")
         self.image_menu = self.image_menu.resize((200, 82), Image.LANCZOS)
         self.image_menu = ImageTk.PhotoImage(self.image_menu)
@@ -92,7 +91,7 @@ class accueil:
         self.total_categorie.place(x=550, y=400, height=100, width=250)
 
         Label(self.root,
-              text="Développer par Arnaud Besse \t\t besseberenger@outlook.com \t\t +41 76 647 19 75\n\t\tCopyright 2023",
+              text="Développer par Arnaud Besse \t\t besseberenger@outlook.com \t\t +41 77 206 23 65\n\t\tCopyright 2023",
               font=("Helvetica", 10, "bold"), bg="black", fg="white").pack(side=BOTTOM, fill=X)
 
     def employe(self):
@@ -116,7 +115,7 @@ class accueil:
 
     def login(self):
         self.root.destroy()
-        self.obj = os.system("python produit.py")
+        self.obj = os.system("python login.py")
        
 
     
