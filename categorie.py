@@ -185,6 +185,12 @@ class categorie:
         self.var_nom.set(row[1])
 
     
+
+
+
+
+
+    
     def recherche(self):
         con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
