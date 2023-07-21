@@ -14,7 +14,7 @@ class categorie:
         self.root.geometry("900x580+300+50")
         self.root.title("Catégorie")
         self.root.minsize(620, 450)
-        self.root.config(bg="#FFFFFF")
+        self.root.config(bg="#D3D3D3")
         self.root.focus_force()  # elle permet de ne pas travailler sur autre fénêtre que elle
 
         #self.var_recherche_texte = StringVar()
@@ -92,8 +92,9 @@ class categorie:
         self.ListeCategorie["show"] = "headings"
         self.ListeCategorie.bind("<ButtonRelease-1>",self.getCategorie)
         self.afficher()  # fonction afficher tout
+    
 
-     
+      
     def afficher(self):
         con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
@@ -129,6 +130,7 @@ class categorie:
             #print(data) 
             con.commit()
             self.afficher()
+            self.reinstaliser()
             messagebox.showinfo("Succès", "La modification a été effectué avec succcess")
 
         except EXCEPTION as ex:
@@ -212,7 +214,7 @@ class categorie:
         con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
         try:
-
+                # On teste si le champs est vide
             if  self.var_nom.get == "":
                 messagebox.showerror("Erreur", "Veuillez saisir le nom")
             else:

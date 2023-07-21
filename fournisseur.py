@@ -21,6 +21,7 @@ class Fournisseur:
         self.var_idfournisseur = StringVar()
         self.var_contact = StringVar()
         self.var_nom = StringVar()
+        
         # Creation de la table fournisseurs 
         con = sqlite3.connect(database="services/data.db")
         cur = con.cursor()
@@ -212,7 +213,7 @@ class Fournisseur:
         self.var_contact.set(""),
         self.txtDescription.delete("1.0", END),
 
-
+    
 
     def modifier(self):
         con = sqlite3.connect(database="services/data.db")
@@ -238,7 +239,9 @@ class Fournisseur:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
 
 
-
+        rech_frame = LabelFrame(self.root, text="Recherche employé", bd=2, relief=RIDGE,bg="white", font=("times new roman", 12, "bold"))
+                               
+        rech_frame.place(x=180, y=10, width=650, height=90)
 
 # ss the green button in the gutter to run the script.
 if __name__ == '__main__':

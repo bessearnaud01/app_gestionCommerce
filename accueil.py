@@ -15,14 +15,14 @@ class accueil:
         self.root.minsize(920, 650)
         self.icon_title = ImageTk.PhotoImage(
             file=r"C:dossier_images\logo.png")
-        Label(self.root, text="Magasin BNAB", image=self.icon_title, font=("Helvetica", 15, "bold"), bg="#e4e8ff",
+        Label(self.root, text="Magasin BNAB", image=self.icon_title,fg="white", font=("Helvetica", 15, "bold"), bg="#e4e8ff",
               anchor="w", padx=20, compound=LEFT).place(x=0, y=0, relwidth=100, height=100)
 
-        Button(self.root, text="Déconnecter",command=self.login, font=("Helvetica", 12, "bold"), bg="orange", cursor="hand2").place(x=900,
+        Button(self.root, text="Déconnecter",command=self.login, font=("Helvetica", 12, "bold"),fg="white" ,bg="orange", cursor="hand2").place(x=900,
                                                                                                                  y=20)
 
         Label(self.root, text="Bienvenu Chez BNAB \t\t Date: DD-MM-YYYY\t\t Heure: HH:MM:SS",
-              font=("Helvetica", 12, "bold"), bg="black", fg="white").place(x=0, y=100, relwidth=1, height=50)
+              font=("Helvetica", 12, "bold"),bg="#454545",fg="white").place(x=0, y=100, relwidth=1, height=50)
 
         menu_frame = Frame(self.root, bd=1, relief=RIDGE, bg="white")
         menu_frame.place(x=0, y=149.9, width=200, height=450)
@@ -32,10 +32,10 @@ class accueil:
         self.Label_image_menu = Label(menu_frame, image=self.image_menu)
         self.Label_image_menu.pack(side=TOP, fill=X)
 
-        self.iconeBarre = ImageTk.PhotoImage(
-            file=r"dossier_images\side.png")
+        self.iconeBarre = ImageTk.PhotoImage(file=r"dossier_images\side.png")
+           
 
-        Label(menu_frame, text="Bienvenu Chez BNAB", font=("Helvetica", 10, "bold"), bg="orange", fg="black").pack(side=TOP, fill=X)
+        Label(menu_frame, text="Bienvenu Chez BNAB", font=("Helvetica", 10, "bold"), bg="orange", fg="white").pack(side=TOP, fill=X)
         btn_employe = Button(menu_frame, command=self.employe, text="Employés", image=self.iconeBarre, padx=10, anchor="w", compound=LEFT,   font=("Helvetica", 8, "bold"), bg="white", bd=5, cursor="hand2")
                             
                           
@@ -92,7 +92,7 @@ class accueil:
 
         Label(self.root,
               text="Développer par Arnaud Besse \t\t besseberenger@outlook.com \t\t +41 77 206 23 65\n\t\tCopyright 2023",
-              font=("Helvetica", 10, "bold"), bg="black", fg="white").pack(side=BOTTOM, fill=X)
+              font=("Helvetica", 10, "bold"),bg="#454545", fg="white").pack(side=BOTTOM, fill=X)
 
     def employe(self):
         self.obj = os.system("python employe.py")
