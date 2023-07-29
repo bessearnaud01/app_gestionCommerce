@@ -41,7 +41,7 @@ class Fournisseur:
 
         Button(rech_frame,command=self.afficher, text="Tout", font=("Helvetica", 9, "bold"),fg="black", bg="lightgrey",cursor="hand2").place(x= 520, y=10, width=50)
             
-        Label(self.root, text="Formulaire Fournisseur", bg="cyan", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=100, width=1020)
+        Label(self.root, text="Formulaire Fournisseur", bg="cyan", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=100, relwidth=1)
 
         # Formulaire du fourniseur
 

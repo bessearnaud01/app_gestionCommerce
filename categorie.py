@@ -27,24 +27,24 @@ class categorie:
         cur.execute("CREATE TABLE IF NOT EXISTS categorie( id INTEGER PRIMARY KEY AUTOINCREMENT, nom text)")
         con.commit()
         
-        Label(self.root, text="Gestion de Catégorie produit",  font=("Helvetica", 14, "bold"), bg="#e4e8ff", fg="black").place(x=0, y=0, relwidth=1, height=50)
+        Label(self.root, text="Gestion de Catégorie produit",  font=("times new roman", 14, "bold"), bg="#e4e8ff", fg="black").place(x=0, y=0, relwidth=1, height=50)
          
           # 2eme ligne de formulaire
-        Label(self.root, text=" Saisir Catégorie Produit:",bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=30,  y=70)
+        Label(self.root, text=" Saisir Catégorie Produit:",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(x=30,  y=70)
            
-        Entry(self.root,bg="lightyellow",textvariable=self.var_nom ,font=("times new roman", 12, "bold"), bd=2).place(x=30, y=95,  width=200)
+        Entry(self.root,textvariable=self.var_nom ,font=("times new roman", 12, "bold"), bd=2).place(x=30, y=95,  width=200)
                                                                                                     
 
 
-        Label(self.root, text=" Saisir Catégorie Produit:",bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=450,  y=70)
+        Label(self.root, text=" Saisir Catégorie Produit:",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(x=450,  y=70)
            
-        Entry(self.root,bg="lightyellow",textvariable=self.var_recherche_txt,font=("times new roman", 12, "bold"), bd=2).place(x=450, y=95,  width=200)
+        Entry(self.root,textvariable=self.var_recherche_txt,font=("times new roman", 12, "bold"), bd=2).place(x=450, y=95,  width=200)
 
         
-        Button(self.root, text="Recherche", command=self.recherche,font=("Helvetica", 9, "bold"), fg="white", bg="blue", cursor="hand2").place(x=660, y=95)
+        Button(self.root, text="Recherche", command=self.recherche,font=("times new roman", 9, "bold"), fg="white", bg="blue", cursor="hand2").place(x=660, y=95)
         
 
-        Button(self.root, text="tout",command=self.afficher, font=("Helvetica", 9, "bold"), bg="lightgray",  cursor="hand2").place(x=746, y=95, width=50)
+        Button(self.root, text="tout",command=self.afficher, font=("times new roman", 9, "bold"), bg="gray",  cursor="hand2").place(x=746, y=95, width=50)
         
         self.btnAjouter = Button(self.root, command=self.ajouter, text="Ajouter", state="normal",font=("Helvetica", 9, "bold"), bg="green", cursor="hand2")
                                
@@ -87,6 +87,7 @@ class categorie:
         scrolly.config(command=self.ListeCategorie.yview)
         self.ListeCategorie.heading("id", text="id")
         self.ListeCategorie.heading("nom", text="Nom")
+        
         self.ListeCategorie.pack(fill=BOTH, expand=1)
 
         self.ListeCategorie["show"] = "headings"
@@ -199,8 +200,8 @@ class categorie:
                 messagebox.showerror("Erreur", "Le champs est vide")
 
             else:
-                cur.execute("""select * from categorie where nom =?""", (self.var_recherche_txt.get(),))
-                   
+             
+                cur.execute( "select * from categorie where nom "  + " LIKE '%" + self.var_recherche_txt.get() + "%'")
                 #print(self.var_recherche_type.get())
                 rows = cur.fetchall()
                 if len(rows) != 0:

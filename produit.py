@@ -46,11 +46,11 @@ class Produit:
         # ListeFrame = tableau
         ProduitFrame = Frame(self.root, bd=3, relief=RIDGE)
         ProduitFrame.place(x=10, y=60, height=450, width=320)
-        Label(ProduitFrame, text="Détail produit", font=("Helvetica", 11, "bold"), bg="#e4e8ff", fg="black").place(x=0,
-                                                                                                                   y=0,
-                                                                                                                   relwidth=1,
-                                                                                                                   height=50)
+        Label(ProduitFrame, text="Détail produit", font=("Helvetica", 11, "bold"), bg="#e4e8ff", fg="black").place(x=0,y=0,relwidth=1,height=50)
 
+                                                                                                                
+                                                                                                                  
+                                                                                                                 
         Label(ProduitFrame, text="Catégorie :", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place(
             x=10, y=90)
         con = sqlite3.connect(database="services/data.db")
@@ -70,25 +70,25 @@ class Produit:
         entreFournisseur.set("Select")
         entreFournisseur.place(x=120, y=120, width=140)
 
-        Label(ProduitFrame, text="Nom :", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place(x=10,
-                                                                                                                  y=150)
-        Entry(ProduitFrame, textvariable=self.var_nom, font=("times new roman", 10, "bold"), bd=2).place(x=120, y=150,
-                                                                                                         width=140)
+        Label(ProduitFrame, text="Nom :", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place(x=10,  y=150)
+                                                                                                                
+        Entry(ProduitFrame, textvariable=self.var_nom, font=("times new roman", 10, "bold"), bd=2).place(x=120, y=150, width=140)
+                                                                                                        
 
-        Label(ProduitFrame, text="Prix:", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place(x=10,
-                                                                                                                  y=180)
-        Entry(ProduitFrame, textvariable=self.var_prix, font=("times new roman", 10, "bold"), bd=2).place(x=120, y=180,
-                                                                                                          width=140)
+        Label(ProduitFrame, text="Prix:", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place(x=10,   y=180)
+                                                                                                               
+        Entry(ProduitFrame, textvariable=self.var_prix, font=("times new roman", 10, "bold"), bd=2).place(x=120, y=180,   width=140)
 
-        Label(ProduitFrame, text="Quantité:", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place(
-            x=10, y=210)
-        Entry(ProduitFrame, textvariable=self.var_quantite, font=("times new roman", 10, "bold"), bd=2).place(x=120,
-                                                                                                              y=210,
-                                                                                                              width=140)
+                                                                                                       
+        Label(ProduitFrame, text="Quantité:", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=10, y=210)
+           
+        Entry(ProduitFrame, textvariable=self.var_quantite, font=("times new roman", 10, "bold"), bd=2).place(x=120, y=210,  width=140)
 
-        Label(ProduitFrame, text="Status:", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place(
-            x=10, y=240)
-        entreStatus = ttk.Combobox(ProduitFrame, textvariable=self.var_status, values=("Activé", "Désactivé"),
+                                                                                                             
+                                                                                                            
+        Label(ProduitFrame, text="Status:", fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place(x=10, y=240)
+         
+        entreStatus = ttk.Combobox(ProduitFrame, textvariable=self.var_status, values=("Active", "Desactive"),
                                    font=("times new roman", 10, "bold"), state="r")
         entreStatus.set("Select")
         entreStatus.place(x=120, y=240, width=140)

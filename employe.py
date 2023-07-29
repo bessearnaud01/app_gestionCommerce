@@ -67,7 +67,7 @@ class Employe:
         Label(self.root, text="Id employé :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(  x=150, y=200)
           
 
-        self.txtId = Entry(self.root,bg="lightyellow" ,textvariable=self.id_employe, font=("times new roman", 12, "bold"), bd=2)
+        self.txtId = Entry(self.root,textvariable=self.id_employe, font=("times new roman", 12, "bold"), bd=2)
         self.txtId.place(x=240, y=200, width=150)
 
         Label(self.root, text="Sexe :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=390, y=200)
@@ -81,31 +81,31 @@ class Employe:
         Label(self.root, text="Prénom :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600, y=200)
                                                                                                                  
 
-        Entry(self.root, textvariable=self.var_prenom, bg="lightyellow",font=("times new roman", 12, "bold"), bd=2).place(x=670, y=200,  width=120)
+        Entry(self.root, textvariable=self.var_prenom,font=("times new roman", 12, "bold"), bd=2).place(x=670, y=200,  width=120)
 
                                                                                                        
         Label(self.root, text="Contact :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600, y=230)
           
 
-        Entry(self.root, textvariable=self.var_contact,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2).place(x=670, y=230, width=120)
+        Entry(self.root, textvariable=self.var_contact, font=("times new roman", 12, "bold"), bd=2).place(x=670, y=230, width=120)
 
                                                                                                          
         # 2eme ligne de formulaire
         Label(self.root, text="Nom:",bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=230)
                                                                                                             
 
-        Entry(self.root, textvariable=self.var_nom,bg="lightyellow" ,font=("times new roman", 12, "bold"), bd=2).place(x=190, y=230,  width=200)
+        Entry(self.root, textvariable=self.var_nom,font=("times new roman", 12, "bold"), bd=2).place(x=190, y=230,  width=200)
                                                                                                     
 
         Label(self.root, text="Date de naissance :",bg="white", font=("times new roman", 12, "bold"),cursor="hand2").place(x=390, y=230)
               
 
-        Entry(self.root, textvariable=self.var_dateNaissance,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2).place(x=530, y=230, width=70)
+        Entry(self.root, textvariable=self.var_dateNaissance, font=("times new roman", 12, "bold"), bd=2).place(x=530, y=230, width=70)
                                                                                                                
                                                                                                                
         Label(self.root, text="Date d'adhésion :", bg="white", font=("times new roman", 12, "bold"),cursor="hand2").place(x=600, y=260)
               
-        Entry(self.root, textvariable=self.var_dateAdhesion,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2).place(x=730, width=60,y=260,)
+        Entry(self.root, textvariable=self.var_dateAdhesion, font=("times new roman", 12, "bold"), bd=2).place(x=730, width=60,y=260,)
                                                                                                            
                                                                                                               
 
@@ -113,13 +113,13 @@ class Employe:
         Label(self.root, text="Mail:", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=260)
                                                                                                              
 
-        Entry(self.root, textvariable=self.var_mail,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2).place(x=190, y=260, width=200)
+        Entry(self.root, textvariable=self.var_mail, font=("times new roman", 12, "bold"), bd=2).place(x=190, y=260, width=200)
                                                                                                       
 
         # Line 4
         Label(self.root, text="Password:", bg="white", font=("times new roman", 12, "bold"),
               cursor="hand2").place(x=390, y=260)
-        Entry(self.root, textvariable=self.var_password,bg="lightyellow" ,font=("times new roman", 12, "bold"), bd=2).place(x=460, y=260, width=140)
+        Entry(self.root, textvariable=self.var_password ,font=("times new roman", 12, "bold"), bd=2).place(x=460, y=260, width=140)
 
                                                                                                           
         Label(self.root, text="Type :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600,y=290)
@@ -134,13 +134,13 @@ class Employe:
         Label(self.root, text="Adresse:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=290)
                                                                                                                 
 
-        self.txt_adresse = Text(self.root,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2)
+        self.txt_adresse = Text(self.root, font=("times new roman", 12, "bold"), bd=2)
         self.txt_adresse.place(x=220, y=290, width=170, height=70)
 
         Label(self.root, text="Salaire:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=390,  y=290)
                                                                                                                 
 
-        Entry(self.root, textvariable=self.var_salaire,bg="lightyellow", font=("times new roman", 12, "bold"), bd=2).place(x=460, y=290, width=140)
+        Entry(self.root, textvariable=self.var_salaire, font=("times new roman", 12, "bold"), bd=2).place(x=460, y=290, width=140)
                                                                                                          
 
         self.btnAjouter = Button(self.root, text="Ajouter", command=self.ajouter, state="normal",font=("Helvetica", 9, "bold"), bg="green", cursor="hand2")
