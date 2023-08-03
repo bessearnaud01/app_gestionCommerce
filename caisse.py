@@ -13,7 +13,7 @@ class Caisse:
 
     def __init__(self, root):
         self.root = root
-        self.root.geometry("1210x620+20+20")
+        self.root.geometry("1300x615+0+0")
         self.root.minsize(620, 450)
         self.root.config(bg="lightgray")
         self.root.focus_force()  # elle permet de ne pas travailler sur autre fénêtre que elle
@@ -27,6 +27,8 @@ class Caisse:
         # Variable pour afficher les calcules ds l'entry
         self.var_Calulatrice = StringVar()
         self.var_produit_text_nom = StringVar()
+        self.var_NomClient = StringVar()
+        self.var_Contact = StringVar()
 
         self.icon_title = ImageTk.PhotoImage(file=r"C:dossier_images\logo.png")
         Label(self.root, text="Caisse Magasin", image=self.icon_title, font=("times new roman", 14, "bold"), fg="black",
@@ -101,7 +103,7 @@ class Caisse:
         # declaration de la fénêtre client
 
         ListeClient = Frame(self.root, bd=3, relief=RIDGE)
-        ListeClient.place(x=370, y=150, height=430, width=500)
+        ListeClient.place(x=370, y=150, height=350, width=560)
         Label(ListeClient, text="Liste des clients", font=("times new roman", 12, "bold"), bg="orange",
               fg="black").pack(side=TOP, fill=X)
 
@@ -115,13 +117,13 @@ class Caisse:
         Label(ListeClientRecherche, text="Nom :", font=("times new roman", 10, "bold"), fg="black").place(x=10, y=9, width=100)
                                                                                                          
 
-        Entry(ListeClientRecherche, font=("times new roman", 10, "bold"), bg="white", fg="black", cursor="hand2").place( x=90, y=9, width=100)
+        Entry(ListeClientRecherche,textvariable=self.var_NomClient, font=("times new roman", 10, "bold"), bg="white", fg="black", cursor="hand2").place( x=90, y=9, width=100)
 
            
         Label(ListeClientRecherche, text="Contact :", font=("times new roman", 10, "bold"), fg="black",
               cursor="hand2").place(x=165, y=9, width=100)
 
-        Entry(ListeClientRecherche, font=("times new roman", 10, "bold"), bg="white", fg="black", cursor="hand2").place(
+        Entry(ListeClientRecherche,textvariable=self.var_Contact, font=("times new roman", 10, "bold"), bg="white", fg="black", cursor="hand2").place(
             x=270, y=12, width=100)
 
         FenetreCalculatrice = Frame(ListeClient, bd=3, relief=RIDGE)
@@ -226,6 +228,7 @@ class Caisse:
         self.var_produit_prix = StringVar()
         self.var_produit_quantite = StringVar()
         self.var_stock = StringVar()
+        
 
         Label(FrameProduitCart, text="Nom :", font=("times new roman", 10, "bold"), fg="black", bg="orange").place(x=5,y=2)
                                                                                                                 
@@ -254,7 +257,7 @@ class Caisse:
         # Fénêtre facture
 
         FrameFacture = Frame(self.root, bd=3, relief=RIDGE, bg="white")
-        FrameFacture.place(x=868, y=150, height=300, width=350)
+        FrameFacture.place(x=868, y=150, height=300, width=404)
 
         Label(FrameFacture, text="Zone de facture du client", font=("times new roman", 12, "bold"), bg="orange",
               fg="black").pack(side=TOP, fill=X)
@@ -262,24 +265,24 @@ class Caisse:
         FactureScrolly = Scrollbar(FrameFacture, orient=VERTICAL)
         FactureScrolly.pack(side=RIGHT, fill=Y)
 
-        self.Txt_espace = Text(FrameFacture, yscrollcommand=FactureScrolly.set)
-        self.Txt_espace.pack(fill=BOTH, expand=1)
+        self.TextEspaceFacture = Text(FrameFacture, yscrollcommand=FactureScrolly.set)
+        self.TextEspaceFacture.pack(fill=BOTH, expand=1)
 
-        FactureScrolly.config(command=self.Txt_espace.yview)
+        FactureScrolly.config(command=self.TextEspaceFacture.yview)
 
         FrameFacture1 = Frame(self.root, bd=3, relief=RIDGE, bg="orange")
-        FrameFacture1.place(x=870, y=450, height=128, width=337)
+        FrameFacture1.place(x=870, y=450, height=128, width=403)
 
         self.LabelFactureMontant = Label(FrameFacture1, text="Montant brute \n [0] :", font=("times new roman", 9, "bold"),fg="white", bg="blue")
-        self.LabelFactureMontant.place(x=10, y=5, height=50, width=95)
+        self.LabelFactureMontant.place(x=10, y=5, height=50, width=115)
                                   
 
         self.LabelRemise = Label(FrameFacture1, text="Rémise \n [0] :", font=("times new roman", 9, "bold"), fg="black", bg="red")
-        self.LabelRemise.place(x=107, y=5, height=50, width=95)
+        self.LabelRemise.place(x=140, y=5, height=50, width=115)
                                 
 
         self.LabelMontantApyer = Label(FrameFacture1, text="Montant net à payer \n [0] :",font=("times new roman", 9, "bold"), fg="black", bg="green")
-        self.LabelMontantApyer.place(x=209, y=5,   height=50,  width=115) 
+        self.LabelMontantApyer.place(x=275, y=5,   height=50,  width=115) 
                                                                                                        
                                                                                                           
 
@@ -287,10 +290,10 @@ class Caisse:
                                           bg="grey", fg="black", cursor="hand2").place(x=15, y=80, width=80)
 
         self.Btn_imprimer = Button(FrameFacture1, text="Imprimer", font=("times new roman", 10, "bold"), bg="green",
-                                   fg="black", cursor="hand2").place(x=118, y=80, width=80)
+                                   fg="black", cursor="hand2").place(x=158, y=80, width=80)
 
-        self.Btn_generer = Button(FrameFacture1, text="Générer", font=("times new roman", 10, "bold"), bg="yellow",
-                                  fg="black", cursor="hand2").place(x=235, y=80, width=80)
+        self.Btn_generer = Button(FrameFacture1,command=self.genererFacture, text="Générer", font=("times new roman", 10, "bold"), bg="yellow",
+                                  fg="black", cursor="hand2").place(x=290, y=80, width=80)
 
         Label(self.root,
               text="Développer par Arnaud Besse \t\t besseberenger@outlook.com \t\t +41 77 206 23 65\n\t\tCopyright 2023",
@@ -337,6 +340,77 @@ class Caisse:
                 self.ListeTableau.insert("", END, values=row)
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
+    
+    def genererFacture(self):
+         if self.var_NomClient.get() == "":
+                messagebox.showerror("Erreur", "Le champs est vide")
+         # On peut pas generer une facture avec le panier libre
+
+         elif len(self.cart_list)==0:
+                messagebox.showerror("Erreur", "Ajouter des produits dans le panier")
+         else:
+              self.FunctionHeader_Facture()
+              self.FunctionBody_Facture()
+              #self.FunctionFooter_Facture()
+              
+              # On va stocker notre fichier fr sert à formater e t w va permettre lonrsqu'on ajoute un contenu les autres puisse être effacer
+              fp = open(fr"Factures\{str(self.facture)}.txt)", "w")
+              # on va écrire dans le fichier
+              fp.write(self.TextEspaceFacture.get("1.0",END))
+              fp.close()
+              messagebox.showinfo("Sauvegarder","Enregistrement/Génerer éffectuer avec succès")
+              # ça veut on génèrer une fois la facture
+              self.ck_print = 1
+    # fonction body
+    def FunctionBody_Facture(self):
+
+        con = sqlite3.connect(database="services/data.db")
+        cur = con.cursor()
+        try:
+            for row in self.cart_list:
+                id =  row[0]
+                nom = row[1]
+                 # on veut faire la modification de la base de données on va faire stock-quantite saisir
+                 # On avait deja  si stock < quantite saisir tout en haut
+                quantite = int(row[4])-int(row[3])
+                if int(row[4])==int(row[3]):
+                    status = "Inactive"
+                if int(row[4])!=int(row[3]):
+                     status ="Active"
+                prix = float(row[2])*float(row[3])
+                prix = str(prix)
+
+                self.TextEspaceFacture.insert(END,"\n "+nom+"\t\t\t"+row[3]+"\t\t"+prix)
+                cur.execute(
+                "update produit set  quantite=?, status=? where id=?",(
+                quantite,
+                status,
+                id,
+                     
+                ))
+                con.commit()
+            con.close()
+            self.afficher()
+        except EXCEPTION as ex:
+            messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
+    # FunctionHeader_Facture cette fonction nous sert à faire de l'entête de notre facture
+    def FunctionHeader_Facture(self):
+        # on va generer la facture en fonction de l'heure
+        self.facture = int(time.strftime("%H%M%S"))+ int(time.strftime("%d%m%Y")) # On va convertir les heure minutes second jour mois années entier pour avoir le numero de la facture 
+        factureEntre =f'''
+ Magasin BNAB 
+ Tel:+ 41 77 203 23 65 
+ Chemin des écoliers 1,1350 Orbe
+ {str("="*46 )}
+ Nom Client : {self.var_NomClient.get()}
+ Telephone : {self.var_Contact.get()}
+ N° de facture :{self.facture}\t\t\tDate :{str(time.strftime("%d/%m/%Y"))}
+ {str("="*46 )}
+ Nom du produit:\t\t\tQuantité:\t\tPrix:
+ {str("="*46  )}
+        '''
+        self.TextEspaceFacture.delete("1.0",END)
+        self.TextEspaceFacture.insert("1.0",factureEntre)
 
     # Fontion du premier tableau
     def recherche(self):
@@ -404,6 +478,8 @@ class Caisse:
             self.afficher_cart()
             self.facture_modifier()
 
+    # Elle calcule les montants de factures
+
     def facture_modifier(self):
         self.montant_facture = 0 
         self.net_payer = 0
@@ -419,7 +495,7 @@ class Caisse:
         self.LabelMontantApyer.config(text=f"Montant net à payer \n [{str(self.net_payer)}]")
         self.LabelRemise.config(text=f"Remise est \n [{str(self.remise)}]")
         self.ProduitTotalLabel.config(text=f"Nombre produit [{str(len(self.cart_list))}]")
-
+    # Elle affiche le panier
     def afficher_cart(self):
         try:
             # nous avons que les éléments qui nous interesse dans la table produit qui ont pour status active

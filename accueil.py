@@ -14,7 +14,7 @@ class accueil:
         self.root.geometry("1020x650+100+1")
         self.root.minsize(920, 650)
         self.icon_title = ImageTk.PhotoImage(
-            file=r"C:dossier_images\logo.png")
+            file=r"dossier_images\logo.png")
         Label(self.root, text="Magasin BNAB", image=self.icon_title,fg="white", font=("Helvetica", 15, "bold"), bg="#e4e8ff",
               anchor="w", padx=20, compound=LEFT).place(x=0, y=0, relwidth=100, height=100)
 
