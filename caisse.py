@@ -38,8 +38,10 @@ class Caisse:
         Button(self.root, text="Déconnecter", command=self.login, font=("times new roman", 12, "bold"), bg="orange",
                fg="black", cursor="hand2").place(x=1100, y=20)
 
-        Label(self.root, text="Bienvenu Chez BNAB \t\t Date: DD-MM-YYYY\t\t Heure: HH:MM:SS",
-              font=("times new roman", 12, "bold"), bg="#454545", fg="white").place(x=0, y=100, relwidth=1, height=50)
+        self.LabelDate=Label(self.root, text="Bienvenu Chez BNAB \t\t Date : DD-MM-YYYY\t\t Heure : HH:MM:SS",
+              font=("times new roman", 12, "bold"), bg="#454545", fg="white")
+        self.LabelDate.place(x=0, y=100, relwidth=1, height=50)
+        self.FunctionHeureEtDate()
 
         # Creation de la fénêtre produit
         ListeProduit = Frame(self.root, bd=3, relief=RIDGE, )
@@ -103,14 +105,14 @@ class Caisse:
         # declaration de la fénêtre client
 
         ListeClient = Frame(self.root, bd=3, relief=RIDGE)
-        ListeClient.place(x=370, y=150, height=350, width=560)
+        ListeClient.place(x=370, y=150, height=400, width=560)
         Label(ListeClient, text="Liste des clients", font=("times new roman", 12, "bold"), bg="orange",
               fg="black").pack(side=TOP, fill=X)
 
         Button(ListeClient, text="Déconnecter", font=("times new roman", 12, "bold"), bg="orange", fg="black",
-               cursor="hand2").place(x=6000, y=20)
+               cursor="hand2").place(x=6100, y=20)
 
-        ListeClientRecherche = LabelFrame(ListeClient, bd=3, text="Recherche employé",
+        ListeClientRecherche = LabelFrame(ListeClient, bd=3, text="Information du client",
                                           font=("times new roman", 12, "bold"))
         ListeClientRecherche.place(x=40, y=40, heigh=65, width=410)
 
@@ -248,7 +250,7 @@ class Caisse:
         Entry(FrameProduitCart, font=("times new roman", 8, "bold"), textvariable=self.var_produit_quantite,
               bg="#D3D3D3", fg="black", cursor="hand2").place(x=200, y=20, width=85)
 
-        Button(FrameProduitCart, text="Réinitialiser", font=("times new roman", 10, "bold"), bg="grey", fg="black",
+        Button(FrameProduitCart, text="Réinitialiser",command=self.clearCart,font=("times new roman", 10, "bold"), bg="grey", fg="black",
                cursor="hand2").place(x=290, y=15, width=80)
 
         Button(FrameProduitCart, text="Ajouter | Modifier",command=self.ajout_modifier, font=("times new roman", 10, "bold"), bg="yellow",
@@ -264,11 +266,24 @@ class Caisse:
 
         FactureScrolly = Scrollbar(FrameFacture, orient=VERTICAL)
         FactureScrolly.pack(side=RIGHT, fill=Y)
+        
+        FactureScrollx = Scrollbar(FrameFacture, orient=HORIZONTAL)
+        FactureScrollx.pack(side=BOTTOM, fill=X)
 
-        self.TextEspaceFacture = Text(FrameFacture, yscrollcommand=FactureScrolly.set)
+
+        self.TextEspaceFacture = Text(FrameFacture, yscrollcommand=FactureScrolly.set,xscrollcommand=FactureScrollx.set)
         self.TextEspaceFacture.pack(fill=BOTH, expand=1)
 
         FactureScrolly.config(command=self.TextEspaceFacture.yview)
+        FactureScrollx.config(command=self.TextEspaceFacture.xview)
+
+        # le scrolly
+
+        
+        
+ 
+
+
 
         FrameFacture1 = Frame(self.root, bd=3, relief=RIDGE, bg="orange")
         FrameFacture1.place(x=870, y=450, height=128, width=403)
@@ -286,14 +301,14 @@ class Caisse:
                                                                                                        
                                                                                                           
 
-        self.Btn_reinitilialiser = Button(FrameFacture1, text="Réinitialiser", font=("times new roman", 10, "bold"),
-                                          bg="grey", fg="black", cursor="hand2").place(x=15, y=80, width=80)
+        self.Btn_reinitilialiser = Button(FrameFacture1, text="Réinitialiser",command=self.clearAll, font=("times new roman", 10, "bold"),
+                                          bg="grey", fg="black", cursor="hand2").place(x=30, y=80, width=80,height=40)
 
-        self.Btn_imprimer = Button(FrameFacture1, text="Imprimer", font=("times new roman", 10, "bold"), bg="green",
-                                   fg="black", cursor="hand2").place(x=158, y=80, width=80)
+        self.Btn_imprimer = Button(FrameFacture1, text="Imprimer",command=self.imprimerFacture, font=("times new roman", 10, "bold"), bg="green",
+                                   fg="black", cursor="hand2").place(x=158, y=80, width=80,height=40)
 
         self.Btn_generer = Button(FrameFacture1,command=self.genererFacture, text="Générer", font=("times new roman", 10, "bold"), bg="yellow",
-                                  fg="black", cursor="hand2").place(x=290, y=80, width=80)
+                                  fg="black", cursor="hand2").place(x=290, y=80, width=80,height=40)
 
         Label(self.root,
               text="Développer par Arnaud Besse \t\t besseberenger@outlook.com \t\t +41 77 206 23 65\n\t\tCopyright 2023",
@@ -351,10 +366,10 @@ class Caisse:
          else:
               self.FunctionHeader_Facture()
               self.FunctionBody_Facture()
-              #self.FunctionFooter_Facture()
+              self.FunctionFooter_Facture()
               
               # On va stocker notre fichier fr sert à formater e t w va permettre lonrsqu'on ajoute un contenu les autres puisse être effacer
-              fp = open(fr"Factures\{str(self.facture)}.txt)", "w")
+              fp = open(fr"Factures\{str(self.facture)}.txt", "w")
               # on va écrire dans le fichier
               fp.write(self.TextEspaceFacture.get("1.0",END))
               fp.close()
@@ -373,14 +388,14 @@ class Caisse:
                  # on veut faire la modification de la base de données on va faire stock-quantite saisir
                  # On avait deja  si stock < quantite saisir tout en haut
                 quantite = int(row[4])-int(row[3])
-                if int(row[4])==int(row[3]):
+                if int(row[4])==int(row[3]): # Lorsque la quantite de produit est fini alors le status du produit devient inactive
                     status = "Inactive"
                 if int(row[4])!=int(row[3]):
                      status ="Active"
                 prix = float(row[2])*float(row[3])
                 prix = str(prix)
 
-                self.TextEspaceFacture.insert(END,"\n "+nom+"\t\t\t"+row[3]+"\t\t"+prix)
+                self.TextEspaceFacture.insert(END,"\n"+nom+"\t\t\t"+row[3]+"\t\t"+prix)
                 cur.execute(
                 "update produit set  quantite=?, status=? where id=?",(
                 quantite,
@@ -401,13 +416,13 @@ class Caisse:
  Magasin BNAB 
  Tel:+ 41 77 203 23 65 
  Chemin des écoliers 1,1350 Orbe
- {str("="*46 )}
- Nom Client : {self.var_NomClient.get()}
+ {str("="*46)}
+ Nom Client :{self.var_NomClient.get()}
  Telephone : {self.var_Contact.get()}
- N° de facture :{self.facture}\t\t\tDate :{str(time.strftime("%d/%m/%Y"))}
+ N° de facture :{self.facture} \tDate :{str(time.strftime("%d/%m/%Y"))}
  {str("="*46 )}
- Nom du produit:\t\t\tQuantité:\t\tPrix:
- {str("="*46  )}
+  Nom du produit\t\t\tQuantité\t\tPrix:
+ {str("="*46)}
         '''
         self.TextEspaceFacture.delete("1.0",END)
         self.TextEspaceFacture.insert("1.0",factureEntre)
@@ -437,7 +452,7 @@ class Caisse:
 
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
-
+    # Fonction de panier
     def ajout_modifier(self):
         if self.var_idProduit.get()=="":
             messagebox.showerror("Erreur", "Selectionnez un produit")
@@ -478,8 +493,48 @@ class Caisse:
             self.afficher_cart()
             self.facture_modifier()
 
+    def clearCart(self):
+        del self.cart_list[:]
+        self.var_idProduit.set("")
+        self.var_produit_nom.set("")
+        self.var_NomClient.set("")
+        self.var_Contact.set("")
+        self.var_produit_prix.set("")
+        self.var_produit_quantite.set("")
+        self.ProduitTotalLabel.config(text=f"Produit total du Panier : [0]")
+        self.LabelnombreStock.config(text="En stock")
+        self.var_stock.set("")
+    
+    def clearAll(self):
+        del self.cart_list[:] # elle permet de supprime la liste
+        self.var_NomClient.set("")
+        self.var_Contact.set("")
+        self.TextEspaceFacture.delete("1.0",END)
+        self.ProduitTotalLabel.config(text=f"Produit total du Panier : [0]")
+        self.var_recherche_txt.set("")
+        self.LabelFactureMontant.config(text=f"Montant brute \n [0]")
+        self.LabelMontantApyer.config(text=f"Montant net à payer \n [0]")
+        self.LabelRemise.config(text=f"Remise est \n [0]")
+        self.ProduitTotalLabel.config(text=f"Nombre produit [0]")
+        self.ck_print=0
+        self.clearCart()
+        self.afficher()
+        self.afficher_cart()
     # Elle calcule les montants de factures
+    def imprimerFacture(self):
+        if self.ck_print==1:
+           messagebox.showinfo("Imprimer","Veuillez patienter pendant l'impression")
+           fichier = tempfile.mktemp(".txt")
+           open(fichier,"w").write(self.TextEspaceFacture.get("1.0",END))
+           os.startfile(fichier,"print")
+        else:
+            messagebox.showerror("Erreur","veuillez génerer facture")
 
+    def FunctionHeureEtDate(self):
+        heure = (time.strftime("%H:%M:%S"))
+        date = (time.strftime("%d:%m:%Y "))
+        self.LabelDate.config(text=f"Bienvenu Chez BNAB \t\t Date : {str(date)}\t\t Heure : {heure}")
+        self.LabelDate.after(200,self.FunctionHeureEtDate)
     def facture_modifier(self):
         self.montant_facture = 0 
         self.net_payer = 0
@@ -505,8 +560,16 @@ class Caisse:
         except EXCEPTION as ex:
             messagebox.showerror("Erreur", f"Erreur de connexion{str(ex)}")
     
-
-    #def actureModifier(self):
+    def FunctionFooter_Facture(self):
+       facture_footer = f''' 
+ {str("="*46)}
+ Montant facture :{self.montant_facture}
+ Remise :{self.remise}
+ Net a payer :{self.net_payer}
+ {str("="*46)}
+ '''
+       self.TextEspaceFacture.insert(END,facture_footer)
+    
             
     # Les fontion de la calculatrice
     def get_input(self, num):
