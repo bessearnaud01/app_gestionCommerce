@@ -7,7 +7,7 @@ import time
 import tempfile  # les fichiers
 import sqlite3
 import os  # elle nous permet de faire des actions au niveau du system
-
+import sqlite3
 
 class Caisse:
 
@@ -529,12 +529,13 @@ class Caisse:
            os.startfile(fichier,"print")
         else:
             messagebox.showerror("Erreur","veuillez génerer facture")
-
+   # fonction la date et de l'heure
     def FunctionHeureEtDate(self):
         heure = (time.strftime("%H:%M:%S"))
         date = (time.strftime("%d:%m:%Y "))
-        self.LabelDate.config(text=f"Bienvenu Chez BNAB \t\t Date : {str(date)}\t\t Heure : {heure}")
+        self.LabelDate.config(text=f"Bienvenu Chez  BNAB \t\t Date : {str(date)}\t\t Heure : {heure}")
         self.LabelDate.after(200,self.FunctionHeureEtDate)
+        
     def facture_modifier(self):
         self.montant_facture = 0 
         self.net_payer = 0

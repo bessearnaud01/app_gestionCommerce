@@ -3,16 +3,17 @@
  Tel:+ 41 77 203 23 65 
  Chemin des écoliers 1,1350 Orbe
  ==============================================
- Nom Client :dbdb
- Telephone : bbdsbd
- N° de facture :7194134 	Date :07/08/2023
+ Nom Client :Diomande Mahi
+ Telephone : +33 246 66 78
+ N° de facture :8182126 	Date :08/08/2023
  ==============================================
   Nom du produit			Quantité		Prix:
  ==============================================
-        ThinKpad			1		2600.0 
+        
+Mac 2book			1		1000.0 
  ==============================================
- Montant facture :2600.0
- Remise :130.0
- Net a payer :2470.0
+ Montant facture :1000.0
+ Remise :50.0
+ Net a payer :950.0
  ==============================================
  

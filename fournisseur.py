@@ -13,7 +13,7 @@ class Fournisseur:
         self.root = root
         self.root.geometry("900x580+300+50")
         self.root.minsize(620, 450)
-        self.root.config(bg="#FFFFFF")
+        self.root.config(bg="#D3D3D3")
         self.root.focus_force()  # elle permet de ne pas travailler sur autre fénêtre que elle
         self.root.title("Fournisseur")
 
@@ -34,30 +34,30 @@ class Fournisseur:
 
 
         Label(rech_frame, text="Nom:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=190, y=10)
-        Entry(rech_frame,bg="lightyellow",textvariable=self.var_recherche_texte, font=("times new roman", 12, "bold"), bd=2).place(x=250, y=10, width=150)
+        Entry(rech_frame,bg="white",textvariable=self.var_recherche_texte, font=("times new roman", 12, "bold"), bd=2).place(x=250, y=10, width=150)
         
 
         Button(rech_frame,command=self.recherche, text="Rechercher:", font=("Helvetica", 9, "bold"),fg="white", bg="blue",cursor="hand2").place(x=410 , y=10, width=100)
 
         Button(rech_frame,command=self.afficher, text="Tout", font=("Helvetica", 9, "bold"),fg="black", bg="lightgrey",cursor="hand2").place(x= 520, y=10, width=50)
             
-        Label(self.root, text="Formulaire Fournisseur", bg="cyan", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=100, relwidth=1)
+        Label(self.root, text="Formulaire Fournisseur", bg="#e4e8ff", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=100, relwidth=1)
 
         # Formulaire du fourniseur
 
-        Label(self.root, text="Id fournisseur :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=160)  
+        Label(self.root, text="Id fournisseur :", bg ="#D3D3D3",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=160)  
         self.id_Txtfournisseur=Entry(self.root,textvariable=self.var_idfournisseur, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2)
         self.id_Txtfournisseur.place(x=130, y=160, width=150)
 
-        Label(self.root, text="Nom :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=200) 
-        Entry(self.root,textvariable=self.var_nom, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=130, y=200, width=150)
+        Label(self.root, text="Nom :", bg ="#D3D3D3",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=200) 
+        Entry(self.root,textvariable=self.var_nom, font=("times new roman", 12, "bold"),bg="white", bd=2).place(x=130, y=200, width=150)
 
         
-        Label(self.root, text="Contact :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=230) 
-        Entry(self.root,textvariable=self.var_contact, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2).place(x=130, y=230, width=150)
+        Label(self.root, text="Contact :", bg ="#D3D3D3",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=230) 
+        Entry(self.root,textvariable=self.var_contact, font=("times new roman", 12, "bold"),bg="white", bd=2).place(x=130, y=230, width=150)
 
-        Label(self.root, text="description :", bg ="white",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=260) 
-        self.txtDescription =Text(self.root, font=("times new roman", 12, "bold"),bg="lightyellow", bd=2)
+        Label(self.root, text="description :", bg ="#D3D3D3",fg="black", font=("times new roman", 12, "bold"), cursor="hand2").place( x=20, y=260) 
+        self.txtDescription =Text(self.root, font=("times new roman", 12, "bold"),bg="#D3D3D3", bd=2)
         self.txtDescription.place(x=130, y=260, width=150,height=70)
 
 

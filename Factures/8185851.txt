@@ -3,16 +3,19 @@
  Tel:+ 41 77 203 23 65 
  Chemin des écoliers 1,1350 Orbe
  ==============================================
- Nom Client :Besse
- Telephone : Arnad
- N° de facture :7213325 	Date :07/08/2023
+ Nom Client :Diomande Mahi
+ Telephone : +225 67 68 70 899
+ N° de facture :8185851 	Date :08/08/2023
  ==============================================
   Nom du produit			Quantité		Prix:
  ==============================================
-        Mac 2book			1		1000.0 
+        
+Lonovo Netbook 3A			1		879.5
+Mac 2book			1		1000.0
+ThinKpad			1		2600.0 
  ==============================================
- Montant facture :1000.0
- Remise :50.0
- Net a payer :950.0
+ Montant facture :4479.5
+ Remise :223.975
+ Net a payer :4255.525
  ==============================================
  

@@ -127,7 +127,7 @@ class Employe:
                                                                                                              
     
        
-        entreType = ttk.Combobox(self.root, textvariable=self.var_type, values=("Administrateur", "Employé"), font=("times new roman", 10, "bold"), state="r")                      
+        entreType = ttk.Combobox(self.root, textvariable=self.var_type, values=("Admin", "Employe"), font=("times new roman", 10, "bold"), state="r")                      
         entreType.current(0)
         entreType.place(x=650, y=290, width=140)
 
