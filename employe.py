@@ -13,7 +13,7 @@ class Employe:
         self.root = root
         self.root.geometry("900x580+300+50")
         self.root.minsize(620, 450)
-        self.root.config(bg="#FFFFFF")
+        self.root.config(bg="#D3D3D3")
         self.root.focus_force()  # elle permet de ne pas travailler sur autre fénêtre que elle
         self.root.title("Employé")
        
@@ -40,7 +40,7 @@ class Employe:
         self.var_salaire = StringVar()
 
         # frame recherche
-        rech_frame = LabelFrame(self.root, text="Recherche employé", bd=2, relief=RIDGE,bg="white", font=("times new roman", 12, "bold"))
+        rech_frame = LabelFrame(self.root, text="Recherche employé", bd=2, relief=RIDGE,bg="#D3D3D3", font=("times new roman", 12, "bold"))
                                
         rech_frame.place(x=180, y=10, width=650, height=90)
 
@@ -61,16 +61,16 @@ class Employe:
         Button(rech_frame, text="tout", command=self.afficher, font=("Helvetica", 9, "bold"), bg="lightgray",  cursor="hand2").place(x=470, y=6, width=50)
              
 
-        Label(self.root, text="Formulaire Employé",bg="#e4e8ff", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=120, width=900)
+        Label(self.root, text="Formulaire Employé",bg="#D3D3D3", font=("times new roman", 15, "bold"),cursor="hand2").place(x=0, y=120, width=900)
               
 
-        Label(self.root, text="Id employé :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(  x=150, y=200)
+        Label(self.root, text="Id employé :",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(  x=150, y=200)
           
 
         self.txtId = Entry(self.root,textvariable=self.id_employe, font=("times new roman", 12, "bold"), bd=2)
         self.txtId.place(x=240, y=200, width=150)
 
-        Label(self.root, text="Sexe :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=390, y=200)
+        Label(self.root, text="Sexe :", font=("times new roman", 12, "bold"),bg="#D3D3D3", cursor="hand2").place(x=390, y=200)
        
         entreSexe = ttk.Combobox(self.root, textvariable=self.var_sexe, values=("Masculin", "Féminin"), font=("times new roman", 10, "bold"), state="r")
                                 
@@ -78,51 +78,51 @@ class Employe:
         # entreSexe.set("Choix")
         entreSexe.current(0)
         entreSexe.place(x=450, y=200, width=150)
-        Label(self.root, text="Prénom :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600, y=200)
+        Label(self.root, text="Prénom :",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600, y=200)
                                                                                                                  
 
         Entry(self.root, textvariable=self.var_prenom,font=("times new roman", 12, "bold"), bd=2).place(x=670, y=200,  width=120)
 
                                                                                                        
-        Label(self.root, text="Contact :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600, y=230)
+        Label(self.root, text="Contact :",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600, y=230)
           
 
         Entry(self.root, textvariable=self.var_contact, font=("times new roman", 12, "bold"), bd=2).place(x=670, y=230, width=120)
 
                                                                                                          
         # 2eme ligne de formulaire
-        Label(self.root, text="Nom:",bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=230)
+        Label(self.root, text="Nom:",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=230)
                                                                                                             
 
         Entry(self.root, textvariable=self.var_nom,font=("times new roman", 12, "bold"), bd=2).place(x=190, y=230,  width=200)
                                                                                                     
 
-        Label(self.root, text="Date de naissance :",bg="white", font=("times new roman", 12, "bold"),cursor="hand2").place(x=390, y=230)
+        Label(self.root, text="Date de naissance :",bg="#D3D3D3", font=("times new roman", 12, "bold"),cursor="hand2").place(x=390, y=230)
               
 
         Entry(self.root, textvariable=self.var_dateNaissance, font=("times new roman", 12, "bold"), bd=2).place(x=530, y=230, width=70)
                                                                                                                
                                                                                                                
-        Label(self.root, text="Date d'adhésion :", bg="white", font=("times new roman", 12, "bold"),cursor="hand2").place(x=600, y=260)
+        Label(self.root, text="Date d'adhésion :",bg="#D3D3D3", font=("times new roman", 12, "bold"),cursor="hand2").place(x=600, y=260)
               
         Entry(self.root, textvariable=self.var_dateAdhesion, font=("times new roman", 12, "bold"), bd=2).place(x=730, width=60,y=260,)
                                                                                                            
                                                                                                               
 
         # line 3
-        Label(self.root, text="Mail:", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=260)
+        Label(self.root, text="Mail:",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=260)
                                                                                                              
 
         Entry(self.root, textvariable=self.var_mail, font=("times new roman", 12, "bold"), bd=2).place(x=190, y=260, width=200)
                                                                                                       
 
         # Line 4
-        Label(self.root, text="Password:", bg="white", font=("times new roman", 12, "bold"),
+        Label(self.root, text="Password:",bg="#D3D3D3", font=("times new roman", 12, "bold"),
               cursor="hand2").place(x=390, y=260)
         Entry(self.root, textvariable=self.var_password ,font=("times new roman", 12, "bold"), bd=2).place(x=460, y=260, width=140)
 
                                                                                                           
-        Label(self.root, text="Type :", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600,y=290)
+        Label(self.root, text="Type :",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(x=600,y=290)
 
                                                                                                              
     
@@ -131,13 +131,13 @@ class Employe:
         entreType.current(0)
         entreType.place(x=650, y=290, width=140)
 
-        Label(self.root, text="Adresse:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=290)
+        Label(self.root, text="Adresse:",bg="#D3D3D3", font=("times new roman", 12, "bold"), cursor="hand2").place(x=150,  y=290)
                                                                                                                 
 
         self.txt_adresse = Text(self.root, font=("times new roman", 12, "bold"), bd=2)
         self.txt_adresse.place(x=220, y=290, width=170, height=70)
 
-        Label(self.root, text="Salaire:", bg="white", font=("times new roman", 12, "bold"), cursor="hand2").place(x=390,  y=290)
+        Label(self.root, text="Salaire:", font=("times new roman", 12, "bold"),bg="#D3D3D3", cursor="hand2").place(x=390,  y=290)
                                                                                                                 
 
         Entry(self.root, textvariable=self.var_salaire, font=("times new roman", 12, "bold"), bd=2).place(x=460, y=290, width=140)
