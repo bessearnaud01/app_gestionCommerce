@@ -38,7 +38,7 @@ class Login:
 
         connecter_btn = Button(login_frame, text="Connexion",command=self.connexion, cursor="hand2", font=("times new roman",12, "bold"), bg="lightgray", fg="green").place(x=100, y=180)
         #activebackground="cyan"#
-        obli_btn = Button(login_frame, text="Mot de passe oublié",command=self.passwor_oublie_fenetre ,cursor="hand2", font=("times new roman", 12),bd=0,fg="red").place(x=80100, y=210)
+        obli_btn = Button(login_frame, text="Mot de passe oublié",command=self.passwor_oublie_fenetre ,cursor="hand2", font=("times new roman", 12),bd=0,fg="red").place(x=80, y=210)
 
     def passwor_oublie_fenetre(self):
         if self.txt_id_employe.get()=="":

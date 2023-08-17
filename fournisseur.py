@@ -114,7 +114,7 @@ class Fournisseur:
                 messagebox.showerror("Erreur", "Veuillez saisir un id et un mot de pass")
             else:
                 # on va tester si l'id existe
-                cur.execute("select *from fournisseur where id=?", (self.var_idfournisseur.get()))
+                cur.execute("select *from fournisseur where id=?", (self.var_idfournisseur.get(),))
                 row = cur.fetchone()
                 if row is not None:
                     messagebox.showerror("Erreur", "L'id du fournisseur existe déja")
